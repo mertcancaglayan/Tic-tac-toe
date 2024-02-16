@@ -1,6 +1,8 @@
 const grid = document.getElementById("grid");
 const cells = document.querySelectorAll("[data-cell]");
 const restartBtn = document.getElementById("restart-btn")
+const messageScreen = document.querySelector("#win-message");
+
 
 const X_CLASS = "x";
 const O_CLASS = "o";
@@ -49,7 +51,6 @@ function clickHandler(event) {
 
 function showMessage(result) {
 	let message = document.querySelector("#message");
-	const messageScreen = document.querySelector("#win-message");
 
 	if (result === "draw") {
 		message.textContent = "It's a draw!";
@@ -74,9 +75,14 @@ function showHover() {
 function startGame() {
 	turn = true;
 	cells.forEach((cell) => {
+		cell.classList.remove(X_CLASS, O_CLASS);
+		cell.removeEventListener("click" , clickHandler);
 		cell.addEventListener("click", clickHandler, { once: true });
 	});
 	showHover();
+	messageScreen.classList.remove("show");
+	messageScreen.style.display = "none";
+
 }
 
 function checkWin() {
@@ -101,3 +107,6 @@ function checkDraw() {
 	return [...cells].every((cell) => cell.classList.contains(X_CLASS) || cell.classList.contains(O_CLASS));
 }
 
+restartBtn.addEventListener("click", () => {
+	startGame()
+})
