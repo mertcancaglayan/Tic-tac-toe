@@ -1,5 +1,6 @@
 const grid = document.getElementById("grid");
 const cells = document.querySelectorAll("[data-cell]");
+const restartBtn = document.getElementById("restart-btn")
 
 const X_CLASS = "x";
 const O_CLASS = "o";
@@ -40,16 +41,25 @@ function clickHandler(event) {
 		swapTurn();
 		showHover();
 		checkWin();
+		if (!win && checkDraw()) {
+			showMessage("draw");
+		}
 	}
 }
 
-function showMessage() {
-    let message = document.querySelector("#message")
-    message.textContent = currentClass.toUpperCase()+ " " + "Wins"
-
+function showMessage(result) {
+	let message = document.querySelector("#message");
 	const messageScreen = document.querySelector("#win-message");
-	messageScreen.style.display = "flex";
-	messageScreen.classList.add("show");
+
+	if (result === "draw") {
+		message.textContent = "It's a draw!";
+		messageScreen.style.display = "flex";
+		messageScreen.classList.add("show");
+	} else {
+		message.textContent = currentClass.toUpperCase() + " Wins";
+		messageScreen.style.display = "flex";
+		messageScreen.classList.add("show");
+	}
 }
 
 function showHover() {
@@ -86,3 +96,8 @@ function checkWin() {
 		}
 	}
 }
+
+function checkDraw() {
+	return [...cells].every((cell) => cell.classList.contains(X_CLASS) || cell.classList.contains(O_CLASS));
+}
+
