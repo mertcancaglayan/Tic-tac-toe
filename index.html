@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
 
+		<title>Tic Tac Toe</title>
+	</head>
+	<body>
+		<div class="load">
+			<i class="fas fa-circle-notch fa-spin"></i>
+			<h1>Loading...</h1>
+		</div>
 
-    <title>Tic Tac Toe</title>
-</head>
-<body>
-    <div id="startScreen">
-        <button id="start-btn">Start</button>
-    </div>
+		<button id="start-btn">Start</button>
 
-    <div id="grid" class="container">
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-    </div>
+		<div id="grid" class="container">
+			<div class="cell" data-cell></div>
+			<div class="cell" data-cell></div>
+			<div class="cell" data-cell></div>
+			<div class="cell" data-cell></div>
+			<div class="cell" data-cell></div>
+			<div class="cell" data-cell></div>
+			<div class="cell" data-cell></div>
+			<div class="cell" data-cell></div>
+			<div class="cell" data-cell></div>
+		</div>
 
-    <div class="win-message" id="win-message">
-        <div id="message">X-wins</div>
-        <button id="restart-btn">Restart</button>
-    </div>
+		<div class="win-message" id="win-message">
+			<div id="message">X-wins</div>
+			<button id="restart-btn">Restart</button>
+		</div>
 
-
-    <script src="script.js" defer></script>
-</body>
+		<script src="script.js" defer></script>
+	</body>
 </html>
