@@ -3,6 +3,8 @@ const grid = document.getElementById("grid");
 const cells = document.querySelectorAll("[data-cell]");
 const restartBtn = document.getElementById("restart-btn");
 const messageScreen = document.querySelector("#win-message");
+const loadScreen = document.querySelector(".load");
+const bodyElement = document.querySelector("body")
 
 const X_CLASS = "x";
 const O_CLASS = "o";
@@ -17,10 +19,12 @@ const WINNING_COMBINATIONS = [
 	[2, 4, 6], // Diagonal from top-right to bottom-left
 ];
 let win = false;
-
 let currentClass;
 let turn;
 
+setTimeout(() => {
+    startBtn.style.display = "flex"; // Show the start button after 3 seconds
+}, 3000); 
 
 function swapTurn() {
 	turn = !turn;
@@ -53,14 +57,15 @@ function showMessage(result) {
 
 	if (result === "draw") {
 		message.textContent = "It's a draw!";
-	} else if (result === "win"){
+	} else if (result === "win") {
 		message.textContent = currentClass.toUpperCase() + " Wins";
 	}
 	
+	bodyElement.style.backgroundColor = "#000"
+
 	messageScreen.style.display = "flex";
 	messageScreen.classList.add("show");
 	grid.style.display = "none";
-
 }
 
 function showHover() {
@@ -73,6 +78,7 @@ function showHover() {
 }
 
 function startGame() {
+	bodyElement.style.backgroundColor = "#fff"
 	startBtn.style.display = "none";
 	grid.style.display = "grid";
 
@@ -101,7 +107,7 @@ function checkWin() {
 			cellC.classList.contains(currentClass)
 		) {
 			win = true;
-			showMessage("win"); 
+			showMessage("win");
 			break;
 		}
 	}
