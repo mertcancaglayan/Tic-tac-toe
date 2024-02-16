@@ -1,8 +1,8 @@
+const startBtn = document.getElementById("start-btn");
 const grid = document.getElementById("grid");
 const cells = document.querySelectorAll("[data-cell]");
-const restartBtn = document.getElementById("restart-btn")
+const restartBtn = document.getElementById("restart-btn");
 const messageScreen = document.querySelector("#win-message");
-
 
 const X_CLASS = "x";
 const O_CLASS = "o";
@@ -21,7 +21,6 @@ let win = false;
 let currentClass;
 let turn;
 
-startGame();
 
 function swapTurn() {
 	turn = !turn;
@@ -54,13 +53,14 @@ function showMessage(result) {
 
 	if (result === "draw") {
 		message.textContent = "It's a draw!";
-		messageScreen.style.display = "flex";
-		messageScreen.classList.add("show");
-	} else {
+	} else if (result === "win"){
 		message.textContent = currentClass.toUpperCase() + " Wins";
-		messageScreen.style.display = "flex";
-		messageScreen.classList.add("show");
 	}
+	
+	messageScreen.style.display = "flex";
+	messageScreen.classList.add("show");
+	grid.style.display = "none";
+
 }
 
 function showHover() {
@@ -73,16 +73,20 @@ function showHover() {
 }
 
 function startGame() {
+	startBtn.style.display = "none";
+	grid.style.display = "grid";
+
 	turn = true;
+	win = false;
+
 	cells.forEach((cell) => {
 		cell.classList.remove(X_CLASS, O_CLASS);
-		cell.removeEventListener("click" , clickHandler);
+		cell.removeEventListener("click", clickHandler);
 		cell.addEventListener("click", clickHandler, { once: true });
 	});
 	showHover();
 	messageScreen.classList.remove("show");
 	messageScreen.style.display = "none";
-
 }
 
 function checkWin() {
@@ -97,7 +101,7 @@ function checkWin() {
 			cellC.classList.contains(currentClass)
 		) {
 			win = true;
-			showMessage();
+			showMessage("win"); 
 			break;
 		}
 	}
@@ -108,5 +112,9 @@ function checkDraw() {
 }
 
 restartBtn.addEventListener("click", () => {
-	startGame()
-})
+	startGame();
+});
+
+startBtn.addEventListener("click", () => {
+	startGame();
+});
