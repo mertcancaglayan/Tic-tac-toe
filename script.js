@@ -4,7 +4,10 @@ const cells = document.querySelectorAll("[data-cell]");
 const restartBtn = document.getElementById("restart-btn");
 const messageScreen = document.querySelector("#win-message");
 const loadScreen = document.querySelector(".load");
-const bodyElement = document.querySelector("body")
+const bodyElement = document.querySelector("body");
+const themeBtn = document.querySelector(".theme-btn");
+const themeIcon = document.querySelector(".theme-btn i");
+const title = document.getElementById("title")
 
 const X_CLASS = "x";
 const O_CLASS = "o";
@@ -61,7 +64,6 @@ function showMessage(result) {
 		message.textContent = currentClass.toUpperCase() + " Wins";
 	}
 	
-	bodyElement.style.backgroundColor = "#000"
 
 	messageScreen.style.display = "flex";
 	messageScreen.classList.add("show");
@@ -78,9 +80,10 @@ function showHover() {
 }
 
 function startGame() {
-	bodyElement.style.backgroundColor = "#fff"
 	startBtn.style.display = "none";
 	grid.style.display = "grid";
+	title.style.display = "flex"
+
 
 	turn = true;
 	win = false;
@@ -123,4 +126,34 @@ restartBtn.addEventListener("click", () => {
 
 startBtn.addEventListener("click", () => {
 	startGame();
+});
+
+let theme = "dark"
+
+themeBtn.addEventListener("click", () => {
+    if (theme === "light") {
+        bodyElement.style.backgroundColor = "#121212"; 
+        themeIcon.style.color = "#fff"; 
+		messageScreen.style.backgroundColor = "#121212";
+		messageScreen.style.color = "#fff";
+		title.style.color = "#fff";
+		
+		cells.forEach((cell)=> {
+			cell.style.boxShadow = "0 0 0 2px #121212"
+		})
+
+		theme = "dark";
+    } else {
+        bodyElement.style.backgroundColor = "#fff"; 
+        themeIcon.style.color = "#000";
+		messageScreen.style.backgroundColor = "#fff";
+		messageScreen.style.color = "#000";
+		title.style.color = "#000";
+
+		cells.forEach((cell) => {
+			cell.style.boxShadow = "0 0 0 2px #fff";
+		});
+
+		theme = "light";
+    }
 });
