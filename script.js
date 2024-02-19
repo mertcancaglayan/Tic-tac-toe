@@ -7,7 +7,7 @@ const loadScreen = document.querySelector(".load");
 const bodyElement = document.querySelector("body");
 const themeBtn = document.querySelector(".theme-btn");
 const themeIcon = document.querySelector(".theme-btn i");
-const title = document.getElementById("title")
+const title = document.getElementById("title");
 
 const X_CLASS = "x";
 const O_CLASS = "o";
@@ -26,8 +26,8 @@ let currentClass;
 let turn;
 
 setTimeout(() => {
-    startBtn.style.display = "flex"; // Show the start button after 3 seconds
-}, 3000); 
+	startBtn.style.display = "flex"; // Show the start button after 3 seconds
+}, 3000);
 
 function swapTurn() {
 	turn = !turn;
@@ -63,7 +63,6 @@ function showMessage(result) {
 	} else if (result === "win") {
 		message.textContent = currentClass.toUpperCase() + " Wins";
 	}
-	
 
 	messageScreen.style.display = "flex";
 	messageScreen.classList.add("show");
@@ -82,8 +81,7 @@ function showHover() {
 function startGame() {
 	startBtn.style.display = "none";
 	grid.style.display = "grid";
-	title.style.display = "flex"
-
+	title.style.display = "flex";
 
 	turn = true;
 	win = false;
@@ -128,24 +126,24 @@ startBtn.addEventListener("click", () => {
 	startGame();
 });
 
-let theme = "dark"
+let theme = "dark";
 
-themeBtn.addEventListener("click", () => {
-    if (theme === "light") {
-        bodyElement.style.backgroundColor = "#121212"; 
-        themeIcon.style.color = "#fff"; 
+function changeTheme() {
+	if (theme === "light") {
+		bodyElement.style.backgroundColor = "#121212";
+		themeIcon.style.color = "#fff";
 		messageScreen.style.backgroundColor = "#121212";
 		messageScreen.style.color = "#fff";
 		title.style.color = "#fff";
-		
-		cells.forEach((cell)=> {
-			cell.style.boxShadow = "0 0 0 2px #121212"
-		})
+
+		cells.forEach((cell) => {
+			cell.style.boxShadow = "0 0 0 2px #121212";
+		});
 
 		theme = "dark";
-    } else {
-        bodyElement.style.backgroundColor = "#fff"; 
-        themeIcon.style.color = "#000";
+	} else {
+		bodyElement.style.backgroundColor = "#fff";
+		themeIcon.style.color = "#000";
 		messageScreen.style.backgroundColor = "#fff";
 		messageScreen.style.color = "#000";
 		title.style.color = "#000";
@@ -155,5 +153,7 @@ themeBtn.addEventListener("click", () => {
 		});
 
 		theme = "light";
-    }
-});
+	}
+}
+
+themeBtn.addEventListener("click", changeTheme);
