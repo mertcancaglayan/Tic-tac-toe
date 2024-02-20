@@ -11,7 +11,6 @@ const title = document.getElementById("title");
 const scoreBoard = document.getElementById("scoreboard");
 const resetScoreBtn = document.getElementById("reset-score");
 
-
 const X_CLASS = "x";
 const O_CLASS = "o";
 const WINNING_COMBINATIONS = [
@@ -89,7 +88,7 @@ function startGame() {
 	grid.style.display = "grid";
 	title.style.display = "flex";
 	scoreBoard.style.display = "flex";
-	resetScoreBtn.style.display = "flex"
+	resetScoreBtn.style.display = "flex";
 
 	turn = true;
 	win = false;
@@ -136,8 +135,8 @@ startBtn.addEventListener("click", () => {
 });
 
 resetScoreBtn.addEventListener("click", () => {
-	resetScore()
-})
+	resetScore();
+});
 
 let theme = "dark";
 
@@ -169,24 +168,23 @@ function changeTheme() {
 	}
 }
 
-document.getElementById('playerX-score').textContent = `Player X: ${playerXScore}`;
-document.getElementById('playerO-score').textContent = `Player O: ${playerOScore}`;
+document.getElementById("playerX-score").textContent = `Player X: ${playerXScore}`;
+document.getElementById("playerO-score").textContent = `Player O: ${playerOScore}`;
 
 function updateScoreboard(winner) {
-    if (winner === 'x') {
-        playerXScore++;
-    } else if (winner === 'o') {
-        playerOScore++;
-    }
+	if (winner === "x") {
+		playerXScore++;
+	} else if (winner === "o") {
+		playerOScore++;
+	}
 
-    document.getElementById('playerX-score').textContent = `Player X: ${playerXScore}`;
-    document.getElementById('playerO-score').textContent = `Player O: ${playerOScore}`;
+	document.getElementById("playerX-score").textContent = `Player X: ${playerXScore}`;
+	document.getElementById("playerO-score").textContent = `Player O: ${playerOScore}`;
 }
 
 function resetScore() {
-	document.getElementById('playerX-score').textContent = `Player X: ${0}`;
-    document.getElementById('playerO-score').textContent = `Player O: ${0}`;
+	document.getElementById("playerX-score").textContent = `Player X: ${0}`;
+	document.getElementById("playerO-score").textContent = `Player O: ${0}`;
 }
-
 
 themeBtn.addEventListener("click", changeTheme);
