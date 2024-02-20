@@ -9,6 +9,7 @@ const themeBtn = document.querySelector(".theme-btn");
 const themeIcon = document.querySelector(".theme-btn i");
 const title = document.getElementById("title");
 const scoreBoard = document.getElementById("scoreboard");
+const resetScoreBtn = document.getElementById("reset-score");
 
 
 const X_CLASS = "x";
@@ -88,6 +89,7 @@ function startGame() {
 	grid.style.display = "grid";
 	title.style.display = "flex";
 	scoreBoard.style.display = "flex";
+	resetScoreBtn.style.display = "flex"
 
 	turn = true;
 	win = false;
@@ -133,6 +135,10 @@ startBtn.addEventListener("click", () => {
 	startGame();
 });
 
+resetScoreBtn.addEventListener("click", () => {
+	resetScore()
+})
+
 let theme = "dark";
 
 function changeTheme() {
@@ -176,5 +182,11 @@ function updateScoreboard(winner) {
     document.getElementById('playerX-score').textContent = `Player X: ${playerXScore}`;
     document.getElementById('playerO-score').textContent = `Player O: ${playerOScore}`;
 }
+
+function resetScore() {
+	document.getElementById('playerX-score').textContent = `Player X: ${0}`;
+    document.getElementById('playerO-score').textContent = `Player O: ${0}`;
+}
+
 
 themeBtn.addEventListener("click", changeTheme);
