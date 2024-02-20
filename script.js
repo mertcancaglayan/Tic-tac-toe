@@ -8,6 +8,8 @@ const bodyElement = document.querySelector("body");
 const themeBtn = document.querySelector(".theme-btn");
 const themeIcon = document.querySelector(".theme-btn i");
 const title = document.getElementById("title");
+const scoreBoard = document.getElementById("scoreboard");
+
 
 const X_CLASS = "x";
 const O_CLASS = "o";
@@ -21,6 +23,9 @@ const WINNING_COMBINATIONS = [
 	[0, 4, 8], // Diagonal from top-left to bottom-right
 	[2, 4, 6], // Diagonal from top-right to bottom-left
 ];
+
+let playerXScore = 0;
+let playerOScore = 0;
 let win = false;
 let currentClass;
 let turn;
@@ -82,6 +87,7 @@ function startGame() {
 	startBtn.style.display = "none";
 	grid.style.display = "grid";
 	title.style.display = "flex";
+	scoreBoard.style.display = "flex";
 
 	turn = true;
 	win = false;
@@ -108,6 +114,7 @@ function checkWin() {
 			cellC.classList.contains(currentClass)
 		) {
 			win = true;
+			updateScoreboard(currentClass);
 			showMessage("win");
 			break;
 		}
@@ -154,6 +161,20 @@ function changeTheme() {
 
 		theme = "light";
 	}
+}
+
+document.getElementById('playerX-score').textContent = `Player X: ${playerXScore}`;
+document.getElementById('playerO-score').textContent = `Player O: ${playerOScore}`;
+
+function updateScoreboard(winner) {
+    if (winner === 'x') {
+        playerXScore++;
+    } else if (winner === 'o') {
+        playerOScore++;
+    }
+
+    document.getElementById('playerX-score').textContent = `Player X: ${playerXScore}`;
+    document.getElementById('playerO-score').textContent = `Player O: ${playerOScore}`;
 }
 
 themeBtn.addEventListener("click", changeTheme);
